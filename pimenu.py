@@ -1,14 +1,13 @@
-#!/usr/bin/python2
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
-import Tkconstants as TkC
+import tkinter.constants as TkC
 import os
 import subprocess
 import sys
-from Tkinter import Tk, Frame, Button, Label, PhotoImage
+from tkinter import Tk, Frame, Button, Label, PhotoImage
 from math import sqrt, floor, ceil
 
 import yaml
-
 
 class FlatButton(Button):
     def __init__(self, master=None, cnf=None, **kw):
@@ -239,6 +238,12 @@ class PiMenu(Frame):
 
 
 def main():
+    
+    # check if 
+    if os.environ.get('DISPLAY','') == '':
+        print('no display found. Using :0.0')
+        os.environ.__setitem__('DISPLAY', ':0.0')
+    
     root = Tk()
     root.geometry("320x240")
     root.wm_title('PiMenu')
